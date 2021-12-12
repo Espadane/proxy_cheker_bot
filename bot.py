@@ -27,6 +27,7 @@ async def get_message(msg:types.Message):
         requests.get('https://icanhazip.com/')
         message = msg.text
         proxies = message.split('\n')
+        good_proxies = []
         for proxy in proxies:
             proxy_data = get_proxy_data(proxy)
             address = proxy_data[0]['address']
@@ -40,9 +41,12 @@ async def get_message(msg:types.Message):
                 smile = emoji.emojize(':sad_but_relieved_face:')
                 await msg.answer(f'{smile}Прокси не рабочий!\n\n' +proxy_message, disable_web_page_preview=True )
             else:
-                proxy_message = f'Адрес: {address}\nЛогин: {login}\nПароль: {password}\nПорт: {port}\nКод для вставки: <{code}>\n'
+                proxy_message = f'Адрес: {address}\nЛогин: {login}\nПароль: {password}\nПорт: {port}\n'
                 smile = emoji.emojize(':slightly_smiling_face:')
                 await msg.answer(f'{smile}Прокси в порядке!\n\n' + proxy_message + f'Сайт видит IP - {ip}')
+                good_proxies.append(code+'\n')
+        good_proxy_list = ''.join(good_proxies)
+        await msg.answer(f'Хорошие, годные прокси:\n{good_proxy_list}')
     except Exception as e:
         print(e)
         await msg.answer('Ну тут одно из двух, или вы написали что-то то не то. Или проверяльщик айпишника ушел на перерыв. Дай бог чтобы не в запой. Поставьте нам 5 звездочек пожалуйста.')
