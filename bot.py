@@ -5,9 +5,7 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher.filters import Text
 import emoji
 
-from bot import check_ip
 
-# 196.17.249.29:8000:5vXGFz:bGb992
 bot_token = getenv("BOT_TOKEN")
 if not bot_token:
     exit("Error: no token provided")
