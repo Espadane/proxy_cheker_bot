@@ -93,7 +93,7 @@ def check_ip(proxy=None):
     try:
         session = requests.Session()
         session.proxies.update(proxies)
-        response = session.get(url, timeout=10)
+        response = session.get(url, timeout=3)
         ip = response.text
     except Exception as e:
         ip = None
