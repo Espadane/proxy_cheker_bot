@@ -6,7 +6,7 @@ from aiogram.dispatcher.filters import Text
 import emoji
 
 
-bot_token = getenv("BOT_TOKEN")
+bot_token = getenv("PROXY_BOT_TOKEN")
 if not bot_token:
     exit("Error: no token provided")
     
