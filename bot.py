@@ -38,12 +38,10 @@ async def get_message(msg:types.Message):
             ip = check_ip(code)
             if ip == None:
                 proxy_message = f'Адрес: {address}\nЛогин: {login}\nПароль: {password}\nПорт: {port}'
-                smile = emoji.emojize(':sad_but_relieved_face:')
-                await msg.answer(f'{smile}Прокси не рабочий!\n\n' +proxy_message, disable_web_page_preview=True )
+                await msg.answer(emoji.emojize(f':stop_sign::sad_but_relieved_face:Прокси не рабочий!\n\n' +proxy_message, disable_web_page_preview=True ))
             else:
                 proxy_message = f'Адрес: {address}\nЛогин: {login}\nПароль: {password}\nПорт: {port}\n'
-                smile = emoji.emojize(':slightly_smiling_face:')
-                await msg.answer(f'{smile}Прокси в порядке!\n\n' + proxy_message + f'Сайт видит IP - {ip}')
+                await msg.answer(emoji.emojize(f':green_circle::slightly_smiling_face:Прокси в порядке!\n\n' + proxy_message + f'Сайт видит IP - {ip}'))
                 good_proxies.append(code+'\n')
         good_proxy_list = ''.join(good_proxies)
         await msg.answer(f'Хорошие, годные прокси:\n{good_proxy_list}')
